@@ -1,0 +1,351 @@
+/* CSS styles */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,80);
+
+.back {
+  position:absolute;
+  width: 2800px;
+  height: 1900px;
+  left: 0px;
+  top: 0px;
+background: url(https://s3-alpha-sig.figma.com/img/f4ca/93a9/3b4e447bcd04b1d0202f8d71a9e4138d?Expires=1632096000&Signature=b-MdfNVqWGZ7~j~OIs5gWZHcISDgR6G9mOXXo~aEg0Rokvr~bxKgviWvJeutrMplrhothsVVATCFfgKk-lWuoZpYLkZLAxQznKDQXW2K2gkcsTE9LsvJpUsgwwFULW1o6BkblOVrIQNKCNeC65dabPEpX6N8fZxTzF5p8MBl02Zk-ObSm3bv~WeUYtmLLy-Ua2KiqTYpZ-l3dC965fxjPeAokcwRUEckjKN39BRq8fat9jzDSjSe95b4KFRufr5-OuCAAKkKad20FjFlU~KcASmZi-H9DgDRjehkGy3r8eWWa14bKMAe6vJMavuexJ-chx6KJaBYPNNas3USlrwJ0A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+background-repeat: no-repeat;
+}
+#gradian-back{
+  position:absolute;
+  left: 0%;
+  right: 0.07%;
+  top: 0%;
+  bottom: -0.98%;
+  background: linear-gradient(180deg,
+     rgba(0, 0, 0, 0.5) 0%,
+     rgba(118, 118, 118, 0.465234) 71.35%,
+     rgba(255, 255, 255, 0) 100%);
+  );
+}
+h1,h3{
+position: static;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+font-family: 'Melso';
+font-style: normal;
+font-weight: 900;
+font-size: 70.6694px;
+line-height: 94px;
+
+/* identical to box height, or 133% */
+text-align: center;
+letter-spacing: 0.294456px;
+
+/* light-text-color */
+color: #FFFFFF;
+
+
+/* Inside Auto Layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+margin-top: 10px;
+margin-bottom: 50px;
+}
+nav {
+  position:static;
+  width: 1022px;
+  height: 601.37px;
+  left: 0%;
+  top: 0px;
+
+  background: #FAFAFA;
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  align-self:auto;
+  flex-grow: 0;
+  margin: 0px 1100px;
+}
+footer {
+  position:absolute;
+  width: 1022px;
+  height: 194px;
+  left: 10px;
+  top: 0px;
+
+  background: #FAFAFA;
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0px 1090px;
+  margin-top: 1313px;
+}
+
+#last{
+  position: static;
+width: 1000px;
+height: 40.47px;
+left: 82.49px;
+top: 0px;
+
+font-family: 'Melso';
+font-style: normal;
+font-weight:bolder;
+font-size: 38.4px;
+line-height: 40px;
+
+/* identical to box height, or 142% */
+letter-spacing: 0.542px;
+text-align: center;
+/* text-color */
+color: #252B42;
+
+
+/* Inside Auto Layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;
+}
+
+.flex1{
+  display: flex;
+flex-direction:row;
+justify-content:space-around;
+padding: 21.3px 28.4px;
+}
+.flex1 .first{
+  position: static;
+  width: 230.75px;
+  height: 94.81px;
+  left: 1.06px;
+  top: 0px;
+
+  background: #FAFAFA;;
+  border: 2.71px solid #E9E9E9;
+  box-sizing: border-box;
+  border-radius: 3.55px;
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 0px;
+}
+.flex1 .second{
+  position: static;
+  width: 230.75px;
+  height: 94.81px;
+  left: 1.06px;
+  top: 0px;
+
+  background: #23A6F0;
+  border: 2.71px solid #E9E9E9;
+  border-radius: 3.55px;
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 0px;
+}
+.flex1 .third{
+  position: static;
+  width: 230.75px;
+  height: 94.81px;
+  left: 1.06px;
+  top: 0px;
+
+  background: #FAFAFA;;
+  border: 2.71px solid #E9E9E9;
+  box-sizing: border-box;
+  border-radius: 3.55px;
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 0px;
+}
+ .vector{
+
+margin: 10px 40%;
+margin-bottom: : 0px;
+width:50px;
+height:35px;
+}
+
+.mainrow{
+  display: flex;
+flex-direction: row;
+align-items:baseline;
+padding: 0px;
+
+position: static;
+width: 744.79px;
+height: 413.93px;
+left: calc(50% - 744.79px/2);
+top: 56.8px;
+
+
+/* Inside Auto Layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;}
+
+.flex2{
+  display: flex;
+flex-direction:row;
+justify-content:space-between;
+align-items: center;
+padding: 106.8px 0px;
+
+position: absolute;
+width: 745.5px;
+height: 527.53px;
+left: 1250px;
+top: 3.84px;
+}
+ .first1{
+position: static;
+width: 361.39px;
+height: 113.6px;
+left: 0px;
+top: 0px;
+
+
+font-style: normal;
+font-weight: 800;
+font-size: 41.18px;
+line-height: 57px;
+
+/* or 138% */
+letter-spacing: 0.142px;
+
+/* dark-background-color */
+color: Black;
+
+
+/* Inside Auto Layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0.85px 0px;
+}
+.second2{
+  /* Auto Layout */
+  position: static;
+  width: 444.41px;
+  height: 333.93px;
+  left: 13.85px;
+  top: 0px;
+
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin-top: 200px;
+  margin-left: 50px;
+}
+.secbutton{
+  /* Auto Layout */
+width: 180px;
+height: 40px;
+flex-direction: column;
+align-items: center;
+padding:10px 15px;
+
+position: absolute;
+left: 68.93%;
+right: 41.78%;
+top: 89.37%;
+bottom:9%;
+text-align:center;
+/* primary-color */
+background: #23A6F0;
+border-radius: 26.27px;
+transform: rotate(21.29deg);
+}
+.buttflex{
+  display: flex;
+  flex-direction: row;
+  align-self:center;
+
+  padding: 0px 130px;
+
+  position: static;
+  width: 254.57px;
+  height: 36.92px;
+  left: 0px;
+  top: 305.9px;
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+  margin: 24.85px 0px;
+}
+.buttflex .button1{
+
+flex-direction: column;
+align-items: center;
+padding: 10.65px 25.56px;
+
+position: static;
+width: 131.35px;
+height: 36.92px;
+left: 0px;
+top: 0px;
+
+/* primary-color */
+background: #23A6F0;
+border-radius: 26.27px;
+
+/* Inside Auto Layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 7.1px;
+}
+.buttflex .button2{
+
+flex-direction: column;
+align-items: center;
+padding: 10.65px 25.56px;
+
+position: static;
+width: 126.12px;
+height: 36.92px;
+left: 138.45px;
+top: 0px;
+
+/* primary-color */
+border: 0.71px solid #23A6F0;
+box-sizing: border-box;
+border-radius: 26.27px;
+
+/* Inside Auto Layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+margin: 0px 7.1px;
+}
+.finally{
+  position:relative;
+  width: 149.45px;
+  height: 201.96px;
+left: -15.52px;
+top: -5%;
+
+/* disabled-element-color */
+background: #8EC2F2;
+opacity: 0.25;
+transform: matrix(-0.71, 0.81, -0.61, -0.71, 0, 0);
+border-radius:40%
+}
