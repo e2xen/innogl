@@ -12,7 +12,22 @@ This project is a fully anonymous web and video chats with strangers. Users can 
 
 
 ## Installation
-#### TODO
+### Pre-installation
+You should have installed Java 16 and Docker.
+
+### Running a project
+* Firstly, run unit tests:
+```shell
+ ./gradlew test
+```
+* Build a JAR file 
+```shell
+ ./gradlew build -x test --stacktrace
+```
+* Run the project
+```
+ java -jar ./build/libs/incidents-sso.jar -Xms256M -Xmx1G
+```
 
 ## Code style
 The code will be written using best practices of Spring and will be documented.
@@ -28,7 +43,7 @@ The code will be written using best practices of Spring and will be documented.
 * The project will be working inside a cyber cluster.
 
 ## How to use
-#### TODO
+Open the following link in your browser [http://localhost:8080/](http://localhost:8080/).
 
 ## Contribution
 You can contribute in your project - we are glad to new ideas. Just open pull requests. However, be sure to follow our style guids for the code.
