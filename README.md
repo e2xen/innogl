@@ -29,6 +29,7 @@ You should have installed Java 16 and Docker.
  java -jar ./build/libs/incidents-sso.jar -Xms256M -Xmx1G
 ```
 
+
 ## Code style
 The code will be written using best practices of Spring and will be documented.
 
