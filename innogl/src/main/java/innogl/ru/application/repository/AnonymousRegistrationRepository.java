@@ -4,9 +4,10 @@ import innogl.ru.application.model.AnonymousRegistration;
 import org.springframework.data.keyvalue.repository.KeyValueRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AnonymousRegistrationRepository extends KeyValueRepository<AnonymousRegistration,String> {
-    List<AnonymousRegistration> findAllByUserSessionId(String userSessionId);
+    Optional<AnonymousRegistration> findByUserSessionId(String userSessionId);
+
 }
