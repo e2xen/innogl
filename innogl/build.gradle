@@ -28,14 +28,19 @@ dependencies {
 	implementation 'org.webjars:bootstrap:3.3.7'
 	implementation 'org.webjars:jquery:3.1.1-1'
 
+	implementation 'com.google.guava:guava:31.0.1-jre'
+
 	// annotations
 	implementation 'org.springframework:spring-aop:5.3.10'
 	implementation 'org.aspectj:aspectjrt:1.9.7'
 	runtimeOnly 'org.aspectj:aspectjweaver:1.9.7'
 
+	// mapstruct
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
 
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
