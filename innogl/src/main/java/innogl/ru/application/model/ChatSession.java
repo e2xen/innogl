@@ -33,12 +33,15 @@ public class ChatSession {
 
 
     public ChatSession(String userSession, @Nullable String topic) {
-        this.userSessions.add(userSession);
+        userSessions.add(userSession);
         this.topic = topic;
     }
 
     public ChatSession addUserSession(String userSession) {
-        this.userSessions.add(userSession);
+        if (userSessions.size() >= MAX_NUMBER_OF_USERS) {
+            throw new IllegalStateException("Max number of users in chat exceeded: " + MAX_NUMBER_OF_USERS);
+        }
+        userSessions.add(userSession);
         return this;
     }
 }
