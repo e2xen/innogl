@@ -24,8 +24,8 @@ public class ChatSessionController {
     }
 
     @AuthorizedAction
-    @DeleteMapping("/chat-session")
-    public void closeChat(@RequestParam UUID uuid, HttpSession session) {
+    @DeleteMapping("/chat-session/{chatId}")
+    public void closeChat(@PathVariable UUID chatId) {
 
     }
 

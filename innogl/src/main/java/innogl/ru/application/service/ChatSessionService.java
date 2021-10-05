@@ -8,6 +8,8 @@ import innogl.ru.application.repository.ChatSessionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ChatSessionService {
@@ -16,8 +18,11 @@ public class ChatSessionService {
     private final ChatSessionMapper mapper;
 
     public NewChatDTO createChatSession(RegisterChatDTO registerDTO, String userSession) {
-        return mapper.toNewChatDTO(
-                chatSessionRepository.save(new ChatSession(userSession, registerDTO.getTopic()))
-        );
+        String topic = Optional.ofNullable(registerDTO)
+                .map(RegisterChatDTO::getTopic)
+                .orElse(null);
+
+        ChatSession chatSession = chatSessionRepository.save(new ChatSession(userSession, topic));
+        return mapper.toNewChatDTO(chatSession);
     }
 }
