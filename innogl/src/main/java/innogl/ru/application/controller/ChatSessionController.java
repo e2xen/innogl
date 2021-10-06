@@ -20,8 +20,8 @@ public class ChatSessionController {
 
     @CrossOrigin(originPatterns = {"*"})
     @PostMapping("/chat-session")
-    public ResponseEntity<NewChatDTO> registerChat(@RequestBody(required = false) RegisterChatDTO registerDTO, HttpSession session) {
-        return ResponseEntity.ok(chatSessionService.createChatSession(registerDTO, session.getId()));
+    public ResponseEntity<NewChatDTO> createOrFindChat(@RequestBody(required = false) RegisterChatDTO registerDTO, HttpSession session) {
+        return ResponseEntity.ok(chatSessionService.createOrFindChatSession(registerDTO, session.getId()));
     }
 
     @DeleteMapping("/chat-session/{chatId}")

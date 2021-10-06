@@ -21,7 +21,7 @@ public class ChatSession {
     @Id
     private UUID chatId = UUID.randomUUID();
 
-    private Set<String> userSessions = new HashSet<>();
+    private Set<UUID> userIds = new HashSet<>();
 
     private OffsetDateTime expirationTime = OffsetDateTime.now().plusHours(1);
 
@@ -32,16 +32,19 @@ public class ChatSession {
     private boolean full = false;
 
 
-    public ChatSession(String userSession, @Nullable String topic) {
-        userSessions.add(userSession);
+    public ChatSession(UUID userId, @Nullable String topic) {
+        userIds.add(userId);
         this.topic = topic;
     }
 
-    public ChatSession addUserSession(String userSession) {
-        if (userSessions.size() >= MAX_NUMBER_OF_USERS) {
+    public ChatSession addUser(UUID userId) {
+        if (userIds.size() >= MAX_NUMBER_OF_USERS) {
             throw new IllegalStateException("Max number of users in chat exceeded: " + MAX_NUMBER_OF_USERS);
         }
-        userSessions.add(userSession);
+        userIds.add(userId);
+        if (userIds.size() == MAX_NUMBER_OF_USERS) {
+            full = true;
+        }
         return this;
     }
 }

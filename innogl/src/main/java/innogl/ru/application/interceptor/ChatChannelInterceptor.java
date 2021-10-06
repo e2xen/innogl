@@ -1,23 +1,29 @@
 package innogl.ru.application.interceptor;
 
+import innogl.ru.application.helper.UUIDHelper;
+import innogl.ru.application.service.ChatSessionService;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.expression.AccessException;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.core.DestinationResolutionException;
 import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.stereotype.Component;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Objects;
+import java.util.UUID;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class ChatChannelInterceptor implements ChannelInterceptor {
-    private static final String UUID_PATTERN = "\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b";
+    private static final String AUTH_HEADER = "Authorization";
+
+    private final ChatSessionService chatSessionService;
 
     @SneakyThrows
     @Override
@@ -26,21 +32,18 @@ public class ChatChannelInterceptor implements ChannelInterceptor {
         final StompHeaderAccessor headers = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
 
         if (headers != null && headers.getCommand() == StompCommand.SUBSCRIBE) {
-            String dest = headers.getDestination();
-            log.info("subscription to destination = {}", dest);
-            if (dest != null && dest.matches(String.format("/chat/%s/queue/messages", UUID_PATTERN))) {
-                log.info("performing subscription to a chat = {}", extractUUIDFromPath(dest));
-                throw new AccessException("not allowed to join chat");
-            } else {
-                log.info("performing subscription to undefined");
-            }
+            preSubscribe(headers);
         }
         return message;
     }
 
-    private static String extractUUIDFromPath(String path) {
-        Pattern pattern = Pattern.compile(UUID_PATTERN);
-        Matcher matcher = pattern.matcher(path);
-        return matcher.find() ? matcher.group() : null;
+    private void preSubscribe(StompHeaderAccessor headers) {
+        UUID userId = UUID.fromString(Objects.requireNonNull(headers.getNativeHeader(AUTH_HEADER)).get(0));
+        String dest = headers.getDestination();
+        if (UUIDHelper.matchesPathWithUUID(dest, "/chat/%s/queue/messages")) {
+             chatSessionService.addUserToChat(userId, UUIDHelper.extractUUIDFromPath(dest));
+        } else {
+            throw new DestinationResolutionException("Undefined subscribe destination: " + dest);
+        }
     }
 }
