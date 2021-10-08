@@ -25,9 +25,10 @@ public class ChatSessionService {
 
     private final ChatSessionRepository repository;
     private final ChatSessionMapper mapper;
+    UserCredentialService userCredentialService;
 
-    public NewChatDTO createOrFindChatSession(RegisterChatDTO registerDTO, String userSession) {
-        UUID newUser = UUID.randomUUID();
+    public NewChatDTO createOrFindChatSession(RegisterChatDTO registerDTO) {
+        UUID userId = userCredentialService.ensureUser(registerDTO.getUserId());
 
         String topic = Optional.ofNullable(registerDTO)
                 .map(RegisterChatDTO::getTopic)
@@ -41,10 +42,10 @@ public class ChatSessionService {
         if (StringUtil.isNullOrEmpty(topic) && !sessions.isEmpty()) {
             chatSession = sessions.get(0);
         } else {
-            chatSession = repository.save(new ChatSession(newUser, topic));
+            chatSession = repository.save(new ChatSession(userId, topic));
         }
 
-        return mapper.chatSessionToNewChatDTO(chatSession, newUser);
+        return mapper.chatSessionToNewChatDTO(chatSession, userId);
     }
 
     public List<String> getTopics() {
@@ -54,12 +55,14 @@ public class ChatSessionService {
                 .collect(Collectors.toList());
     }
 
-    public boolean isMemberOfChatSessionWithId(UUID userId, UUID chatSessionId) {
+    public boolean isMemberOfChatSessionWithId(String userToken, UUID chatSessionId) {
         Optional<ChatSession> chat = repository.findById(chatSessionId);
-        return chat.isPresent() && chat.get().getUserIds().contains(userId);
+        return chat.isPresent() &&
+                chat.get().getUserIds().contains(userCredentialService.findIdByToken(userToken));
     }
 
-    public void addUserToChat(UUID userId, UUID chatId) {
+    public void addUserToChat(String userToken, UUID chatId) {
+        UUID userId = userCredentialService.findIdByToken(userToken);
         Optional<ChatSession> optionalChat = repository.findById(chatId);
         if (optionalChat.isEmpty()) {
             throw new DestinationResolutionException("No chat by id: " + chatId.toString());

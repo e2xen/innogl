@@ -29,7 +29,9 @@ dependencies {
 	implementation 'org.webjars:bootstrap:3.3.7'
 	implementation 'org.webjars:jquery:3.1.1-1'
 
+	// utils
 	implementation 'com.google.guava:guava:31.0.1-jre'
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
 
 	// annotations
 	implementation 'org.springframework:spring-aop:5.3.10'

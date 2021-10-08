@@ -17,11 +17,12 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 import java.util.UUID;
 
+import static innogl.ru.application.constants.StompHeaders.AUTH_HEADER;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class ChatChannelInterceptor implements ChannelInterceptor {
-    private static final String AUTH_HEADER = "Authorization";
 
     private final ChatSessionService chatSessionService;
 
@@ -38,10 +39,10 @@ public class ChatChannelInterceptor implements ChannelInterceptor {
     }
 
     private void preSubscribe(StompHeaderAccessor headers) {
-        UUID userId = UUID.fromString(Objects.requireNonNull(headers.getNativeHeader(AUTH_HEADER)).get(0));
+        String userToken = Objects.requireNonNull(headers.getNativeHeader(AUTH_HEADER)).get(0);
         String dest = headers.getDestination();
         if (UUIDHelper.matchesPathWithUUID(dest, "/chat/%s/queue/messages")) {
-             chatSessionService.addUserToChat(userId, UUIDHelper.extractUUIDFromPath(dest));
+             chatSessionService.addUserToChat(userToken, UUIDHelper.extractUUIDFromPath(dest));
         } else {
             throw new DestinationResolutionException("Undefined subscribe destination: " + dest);
         }
