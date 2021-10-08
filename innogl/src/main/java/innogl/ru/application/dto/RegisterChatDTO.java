@@ -12,6 +12,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RegisterChatDTO {
-    UUID userId;
+    private UUID userId;
     private String topic;
 }

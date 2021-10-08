@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +19,7 @@ public class ChatSessionController {
 
     @CrossOrigin(originPatterns = {"*"})
     @PostMapping("/chat-session")
-    public ResponseEntity<NewChatDTO> createOrFindChat(@RequestBody(required = false) RegisterChatDTO registerDTO) {
+    public ResponseEntity<NewChatDTO> createOrFindChat(@RequestBody RegisterChatDTO registerDTO) {
         return ResponseEntity.ok(chatSessionService.createOrFindChatSession(registerDTO));
     }
 

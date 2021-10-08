@@ -8,5 +8,6 @@ import java.util.UUID;
 public class ChatMessage {
     private UUID id;
     private UUID chatId;
+    private UUID senderId;
     String content;
 }
