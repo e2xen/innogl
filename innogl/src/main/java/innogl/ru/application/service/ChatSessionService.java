@@ -25,7 +25,7 @@ public class ChatSessionService {
 
     private final ChatSessionRepository repository;
     private final ChatSessionMapper mapper;
-    UserCredentialService userCredentialService;
+    private final UserCredentialService userCredentialService;
 
     public NewChatDTO createOrFindChatSession(RegisterChatDTO registerDTO) {
         UUID userId = userCredentialService.ensureUser(registerDTO.getUserId());

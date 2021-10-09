@@ -1,13 +1,16 @@
-package innogl.ru.application.model;
+package innogl.ru.application.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
+@Builder
 public class ChatMessage {
     private UUID id;
     private UUID chatId;
     private UUID senderId;
-    String content;
+    private MessageType type;
+    private String content;
 }
