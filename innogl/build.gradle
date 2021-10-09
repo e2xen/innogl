@@ -36,6 +36,7 @@ dependencies {
 	// annotations
 	implementation 'org.springframework:spring-aop:5.3.10'
 	implementation 'org.aspectj:aspectjrt:1.9.7'
+	implementation 'org.projectlombok:lombok:1.18.16'
 	runtimeOnly 'org.aspectj:aspectjweaver:1.9.7'
 
 	// mapstruct
@@ -44,10 +45,11 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.1.0'
 
 
+	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'junit:junit:4.12'
 
-	// https://mvnrepository.com/artifact/org.projectlombok/lombok
 	compileOnly 'org.projectlombok:lombok:1.18.20'
 	annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }

@@ -1,5 +1,6 @@
 package innogl.ru.application;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void contextLoads() throws JsonProcessingException {
 	}
 
 }
