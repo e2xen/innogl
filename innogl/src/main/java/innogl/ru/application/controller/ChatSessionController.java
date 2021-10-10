@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -21,11 +20,6 @@ public class ChatSessionController {
     @PostMapping("/chat-session")
     public ResponseEntity<NewChatDTO> createOrFindChat(@RequestBody RegisterChatDTO registerDTO) {
         return ResponseEntity.ok(chatSessionService.createOrFindChatSession(registerDTO));
-    }
-
-    @DeleteMapping("/chat-session/{chatId}")
-    public void closeChat(@PathVariable UUID chatId) {
-
     }
 
     @GetMapping("/topics")
