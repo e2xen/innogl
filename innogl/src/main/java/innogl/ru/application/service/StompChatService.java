@@ -16,6 +16,7 @@ import java.util.UUID;
 public class StompChatService {
 
     private static final String START_MESSAGE = Base64.getEncoder().encodeToString("START".getBytes());
+    private static final String END_MESSAGE = Base64.getEncoder().encodeToString("END".getBytes());
 
     @Lazy
     @Autowired
@@ -42,6 +43,21 @@ public class StompChatService {
                     .chatId(chatId)
                     .type(MessageType.SYSTEM)
                     .content(START_MESSAGE)
+                    .build();
+
+            messagingTemplate.convertAndSendToUser(
+                    message.getChatId().toString(),"/queue/messages",
+                    message);
+        }
+    }
+
+    public void sendEndMessageToChat(UUID chatId) {
+        if (chatSessionService.isChatFull(chatId)) {
+            ChatMessage message = ChatMessage.builder()
+                    .id(UUID.randomUUID())
+                    .chatId(chatId)
+                    .type(MessageType.SYSTEM)
+                    .content(END_MESSAGE)
                     .build();
 
             messagingTemplate.convertAndSendToUser(

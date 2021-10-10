@@ -48,6 +48,9 @@ public class ChatChannelInterceptor implements ChannelInterceptor {
         if (headers != null && headers.getCommand() == StompCommand.SUBSCRIBE) {
             postSubscribe(headers);
         }
+        if (headers != null && headers.getCommand() == StompCommand.UNSUBSCRIBE) {
+            postUnsubscribe(headers);
+        }
     }
 
     private void preSubscribe(StompHeaderAccessor headers) {
@@ -64,6 +67,15 @@ public class ChatChannelInterceptor implements ChannelInterceptor {
         String dest = headers.getDestination();
         if (UUIDHelper.matchesPathWithUUID(dest, "/chat/%s/queue/messages")) {
             stompChatService.sendStartMessageToChat(UUIDHelper.extractUUIDFromPath(dest));
+        } else {
+            throw new DestinationResolutionException("Undefined subscribe destination: " + dest);
+        }
+    }
+
+    private void postUnsubscribe(StompHeaderAccessor headers) {
+        String dest = headers.getDestination();
+        if (UUIDHelper.matchesPathWithUUID(dest, "/chat/%s/queue/messages")) {
+            stompChatService.sendEndMessageToChat(UUIDHelper.extractUUIDFromPath(dest));
         } else {
             throw new DestinationResolutionException("Undefined subscribe destination: " + dest);
         }
