@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class UserCredentialService {
+public class UserCredentialService implements UserCredentialApiService {
     private final UserCredentialRepository repository;
     private final UserCredentialMapper mapper;
 

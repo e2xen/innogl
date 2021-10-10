@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class StompChatService {
+public class StompChatService implements StompChatApiService {
 
     private static final String START_MESSAGE = Base64.getEncoder().encodeToString("START".getBytes());
     private static final String END_MESSAGE = Base64.getEncoder().encodeToString("END".getBytes());
@@ -21,7 +21,7 @@ public class StompChatService {
     @Lazy
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
-    private final ChatSessionService chatSessionService;
+    private final ChatSessionApiService chatSessionService;
 
     public void sendMessage(String userToken, ChatMessage chatMessage) {
         if (!chatSessionService.isMemberOfChatSessionWithId(userToken, chatMessage.getChatId())) {

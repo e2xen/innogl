@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ChatSessionService {
+public class ChatSessionService implements ChatSessionApiService {
 
     private final ChatSessionRepository repository;
     private final ChatSessionMapper mapper;
-    private final UserCredentialService userCredentialService;
+    private final UserCredentialApiService userCredentialService;
 
     public NewChatDTO createOrFindChatSession(RegisterChatDTO registerDTO) {
         UUID userId = userCredentialService.ensureUser(registerDTO.getUserId());

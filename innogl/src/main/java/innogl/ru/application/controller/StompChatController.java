@@ -1,7 +1,7 @@
 package innogl.ru.application.controller;
 
 import innogl.ru.application.dto.ChatMessage;
-import innogl.ru.application.service.StompChatService;
+import innogl.ru.application.service.StompChatApiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.Header;
@@ -16,7 +16,7 @@ import static innogl.ru.application.constants.StompHeaders.AUTH_HEADER;
 @RequiredArgsConstructor
 public class StompChatController {
 
-    private final StompChatService service;
+    private final StompChatApiService service;
 
     @MessageMapping("/send-message")
     public void sendMessage(@Header(AUTH_HEADER) String userToken, @Payload ChatMessage chatMessage) {

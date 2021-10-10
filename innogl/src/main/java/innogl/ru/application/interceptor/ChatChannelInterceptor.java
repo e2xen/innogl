@@ -1,8 +1,8 @@
 package innogl.ru.application.interceptor;
 
 import innogl.ru.application.helper.UUIDHelper;
-import innogl.ru.application.service.ChatSessionService;
-import innogl.ru.application.service.StompChatService;
+import innogl.ru.application.service.ChatSessionApiService;
+import innogl.ru.application.service.StompChatApiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
@@ -25,8 +25,8 @@ import static innogl.ru.application.constants.StompHeaders.CHAT_ID_HEADER;
 @RequiredArgsConstructor
 public class ChatChannelInterceptor implements ChannelInterceptor {
 
-    private final ChatSessionService chatSessionService;
-    private final StompChatService stompChatService;
+    private final ChatSessionApiService chatSessionService;
+    private final StompChatApiService stompChatService;
 
     @Override
     public Message<?> preSend(Message<?> message, MessageChannel channel) {

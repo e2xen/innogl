@@ -2,7 +2,7 @@ package innogl.ru.application.controller;
 
 import innogl.ru.application.dto.NewChatDTO;
 import innogl.ru.application.dto.RegisterChatDTO;
-import innogl.ru.application.service.ChatSessionService;
+import innogl.ru.application.service.ChatSessionApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatSessionController {
 
-    private final ChatSessionService chatSessionService;
+    private final ChatSessionApiService chatSessionService;
 
     @CrossOrigin(originPatterns = {"*"})
     @PostMapping("/chat-session")
