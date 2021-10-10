@@ -3,7 +3,8 @@ package innogl.ru.application.service;
 import innogl.ru.application.dto.ChatMessage;
 import innogl.ru.application.dto.MessageType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.messaging.MessageChannel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ public class StompChatService {
 
     private static final String START_MESSAGE = "START";
 
+    @Lazy
+    @Autowired
+    private SimpMessagingTemplate messagingTemplate;
     private final ChatSessionService chatSessionService;
 
     public void sendMessage(String userToken, ChatMessage chatMessage) {
@@ -24,9 +28,13 @@ public class StompChatService {
         if (chatMessage.getType() == MessageType.SYSTEM) {
             throw new IllegalArgumentException("User cannot send system message");
         }
+
+        messagingTemplate.convertAndSendToUser(
+                chatMessage.getChatId().toString(),"/queue/messages",
+                chatMessage);
     }
 
-    public void sendStartMessageToChat(UUID chatId, MessageChannel channel) {
+    public void sendStartMessageToChat(UUID chatId) {
         ChatMessage message = ChatMessage.builder()
                 .id(UUID.randomUUID())
                 .chatId(chatId)
@@ -34,12 +42,8 @@ public class StompChatService {
                 .content(START_MESSAGE)
                 .build();
 
-        messagingTemplate(channel).convertAndSendToUser(
+        messagingTemplate.convertAndSendToUser(
                 message.getChatId().toString(),"/queue/messages",
                 message);
-    }
-
-    private SimpMessagingTemplate messagingTemplate(MessageChannel channel) {
-        return new SimpMessagingTemplate(channel);
     }
 }
