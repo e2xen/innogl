@@ -15,8 +15,10 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import static innogl.ru.application.constants.StompHeaders.AUTH_HEADER;
+import static innogl.ru.application.constants.StompHeaders.CHAT_ID_HEADER;
 
 @Slf4j
 @Component
@@ -73,11 +75,12 @@ public class ChatChannelInterceptor implements ChannelInterceptor {
     }
 
     private void postUnsubscribe(StompHeaderAccessor headers) {
-        String dest = headers.getDestination();
-        if (UUIDHelper.matchesPathWithUUID(dest, "/chat/%s/queue/messages")) {
-            stompChatService.sendEndMessageToChat(UUIDHelper.extractUUIDFromPath(dest));
+        String userToken = Objects.requireNonNull(headers.getNativeHeader(AUTH_HEADER)).get(0);
+        UUID chatId = UUID.fromString(Objects.requireNonNull(headers.getNativeHeader(CHAT_ID_HEADER)).get(0));
+        if (chatSessionService.isMemberOfChatSessionWithId(userToken, chatId)) {
+            stompChatService.sendEndMessageToChat(chatId);
         } else {
-            throw new DestinationResolutionException("Undefined subscribe destination: " + dest);
+            throw new IllegalArgumentException("You are not a member of the chat");
         }
     }
 }
