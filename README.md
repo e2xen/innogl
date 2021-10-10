@@ -14,17 +14,17 @@ This project is an anonymous web and video chat with strangers. Users can choose
 * Video streaming will be available with the direct connection between 2 users.
 
 ## Demo
-The demo video is available [TODO HERE](http://youtube.com/)
+![Demo Image](./demo.png)
+The demo video is available [https://youtu.be/NhGpJC8lPCA](https://youtu.be/NhGpJC8lPCA)!
 
-
-### Running a project
-#### Firstly, you need to run backend part.
-Please, check section `How to run` in the following guideline: [backend/README.md](innogl/README.md)
-#### Finally, you need to run the frontend part.
-Please, check section `How to run` in the following guideline: [frontend/README.md](innogl/README.md)
+## Running a project
+### Firstly, you need to run backend part.
+Please, check section `How to run` in the following guideline: [backend/README.md](backend/README.md)
+### Finally, you need to run the frontend part.
+Please, check section `How to run` in the following guideline: [frontend/README.md](frontend/README.md)
 
 ## How to use
-After running on your local machine you should open the following link in your browser [http://localhost:8080/](http://localhost:8080/) and use it!
+After running on your local machine you should open the following link in your browser [http://localhost:3000/](http://localhost:8080/) and use it!
 
 ## Glossary
 - **Spring** - one of the most famous frameworks for Java projects.
