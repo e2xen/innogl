@@ -1,0 +1,64 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'innogl.ru'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+	implementation'org.springframework.boot:spring-boot-starter-data-redis:2.5.4'
+	// sessions
+	implementation 'org.springframework.session:spring-session-core:2.5.2'
+	// redis db
+	implementation 'org.springframework.session:spring-session-data-redis:2.5.2'
+
+
+	//	web socket
+	implementation 'org.webjars:webjars-locator-core'
+	implementation 'org.webjars:sockjs-client:1.0.2'
+	implementation 'org.webjars:stomp-websocket:2.3.3'
+	implementation 'org.webjars:bootstrap:3.3.7'
+	implementation 'org.webjars:jquery:3.1.1-1'
+
+	// utils
+	implementation 'com.google.guava:guava:31.0.1-jre'
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+	// annotations
+	implementation 'org.springframework:spring-aop:5.3.10'
+	implementation 'org.aspectj:aspectjrt:1.9.7'
+	implementation 'org.projectlombok:lombok:1.18.16'
+	runtimeOnly 'org.aspectj:aspectjweaver:1.9.7'
+
+	// mapstruct
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.1.0'
+
+	// auto-swagger
+	implementation 'io.swagger.core.v3:swagger-annotations:2.1.11'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.11'
+
+	// test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	// testImplementation 'junit:junit:4.12'
+	testImplementation "org.testcontainers:testcontainers:1.16.0"
+	testImplementation "org.testcontainers:junit-jupiter:1.16.0"
+
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+}
+
+test {
+	useJUnitPlatform()
+}

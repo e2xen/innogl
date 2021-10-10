@@ -1,0 +1,14 @@
+.animation-loading-bubbles {
+    text-align: center;
+}
+
+.animation-loading-bubbles .loader-chat {
+    margin: 5px auto;
+}
+
+.animation-loading-bubbles p {
+    color: #E7844C;
+    font-size: 18px;
+    margin: 5px auto;
+    font-weight: bold;
+}
