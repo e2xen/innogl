@@ -35,15 +35,17 @@ public class StompChatService {
     }
 
     public void sendStartMessageToChat(UUID chatId) {
-        ChatMessage message = ChatMessage.builder()
-                .id(UUID.randomUUID())
-                .chatId(chatId)
-                .type(MessageType.SYSTEM)
-                .content(START_MESSAGE)
-                .build();
+        if (chatSessionService.isChatFull(chatId)) {
+            ChatMessage message = ChatMessage.builder()
+                    .id(UUID.randomUUID())
+                    .chatId(chatId)
+                    .type(MessageType.SYSTEM)
+                    .content(START_MESSAGE)
+                    .build();
 
-        messagingTemplate.convertAndSendToUser(
-                message.getChatId().toString(),"/queue/messages",
-                message);
+            messagingTemplate.convertAndSendToUser(
+                    message.getChatId().toString(),"/queue/messages",
+                    message);
+        }
     }
 }

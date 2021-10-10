@@ -61,6 +61,12 @@ public class ChatSessionService {
                 chat.get().getUserIds().contains(userCredentialService.findIdByToken(userToken));
     }
 
+    public boolean isChatFull(UUID chatSessionId) {
+        Optional<ChatSession> chat = repository.findById(chatSessionId);
+        return chat.isPresent() &&
+                chat.get().isFull();
+    }
+
     public void addUserToChat(String userToken, UUID chatId) {
         UUID userId = userCredentialService.findIdByToken(userToken);
         Optional<ChatSession> optionalChat = repository.findById(chatId);
