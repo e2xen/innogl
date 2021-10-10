@@ -6,15 +6,17 @@ This folder contains backend part of Innogl project.
 You should have pre-installed [Java 16](https://www.codejava.net/java-se/download-and-install-oracle-jdk-16) and [Docker](https://docs.docker.com/engine/install/).
 
 #### If you want to build your own JAR file:
-* Firstly, run unit tests:
+* Pull this repo from github and navigate to **innogl/backend**:
 ```shell
- ./gradlew test
+ cd innogl/backend
 ```
 * Build a JAR file
 ```shell
- ./gradlew build -x test --stacktrace
+ ./gradlew clean build
 ```
-* Run the project
+* Compose a docker image and run it
 ```
- java -jar ./build/libs/application-0.0.1-SNAPSHOT.jar -Xms256M -Xmx1G
+ docker-compose up
 ```
+*Important:* for this step you need docker running in background.
+Now you're up and running! Backend is accessible at a default 8080 port on your machine.
