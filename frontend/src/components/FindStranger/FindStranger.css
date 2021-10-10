@@ -1,0 +1,264 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,80);
+
+.firsttopic {
+    display: flex;
+    gap: 13%;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 5% 10%;
+}
+
+.firsttopic .left, .firsttopic .righttopic {
+    position: static;
+    width: 50%;
+}
+
+.firsttopic .righttopic {
+    display: block;
+    margin: 0 0 10% 20%;
+    transform: scale(1.9);
+}
+
+.firsttopic .left h2 {
+    color: #252B42;
+    font-size: 300%;
+    margin-bottom: 3%;
+}
+
+.firsttopic .left p {
+    color: #737373;
+    font-size: 200%;
+    margin: 5px auto;
+}
+
+.firsttopic .left p.choose-stranger {
+    margin: 50px 0 0 0;
+}
+
+.firsttopic .left p a {
+    text-decoration: none;
+    color: #23A6F0;
+}
+
+.firsttopic .left p a:hover {
+    text-decoration: underline;
+}
+
+.firsttopic .left .brown {
+    cursor: pointer;
+    margin: 30px auto 10% auto;
+    width: 80%;
+    height: auto;
+    padding: 2%;
+    background: #E7844C;
+    border-radius: 6.55px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 180%;
+    line-height: 100%;
+    border-color: #FFF;
+    letter-spacing: 0.142px;
+    color: #FFFFFF;
+}
+
+.firsttopic .left .brown:hover,
+.firsttopic .left .brown:active {
+    background: #A7844C;
+    transition: all 0.5s;
+
+}
+
+.firsttopic .left h3 {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 200%;
+    line-height: 100%;
+
+    /* Text / Secondary - Grey2 */
+    color: Black;
+}
+
+form.find-stranger {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    gap: 100%;
+}
+
+.firsttopic .left .inp {
+    border: 1px solid #23A6F0;
+    box-sizing: border-box;
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 3.55px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 100%;
+    line-height: 100%;
+    color: #A3A3A3;
+    padding: 10px;
+}
+
+.firsttopic .left .but {
+    border: 1px solid #23A6F0;
+    margin-top: 10px;
+    border: 1px solid #23A6F0;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 100%;
+    line-height: 100%;
+    color: #FFFFFF;
+    width: 100%;
+    height: auto;
+    padding: 2.1%;
+    background: #23A6F0;
+    border-radius: 3.55px;
+}
+
+.firsttopic .left .but:hover {
+    background: none;
+    color: #23A6F0;
+    transition: all 0.5s;
+}
+
+.ull {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: -5%;
+}
+
+.firsttopic .left .lil {
+    border: 1px solid #A9A9A9;
+    box-sizing: border-box;
+    margin: 15px 0;
+    padding: 20px 25px;
+    display: block;
+    cursor: pointer;
+    outline: none;
+    width: auto;
+    height: auto;
+    background: #A9A9A9;
+    border-radius: 3.55px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 130%;
+    line-height: 100%;
+    color: #FFF;
+}
+
+.firsttopic .left .lil:hover {
+    background: none;
+    color: #A9A9A9;
+    transition: all 0.5s;
+}
+
+@media screen and (max-width: 1024px) {
+    .firsttopic {
+        gap: 3%;
+        width: 80%;
+        padding: 5% 17%;
+    }
+
+    .firsttopic .left, .firsttopic .righttopic {
+        margin: -50px auto;
+
+    }
+
+    .firsttopic .left h2 {
+        font-size: 90%;
+    }
+
+    .firsttopic .left p {
+        font-size: 60%;
+    }
+
+    .firsttopic .left .brown {
+        font-size: 70%;
+    }
+
+    .firsttopic .left h3 {
+        font-size: 70%;
+    }
+
+    .but {
+        font-size: 45%;
+        padding-top: 3.2%;
+    }
+
+    .firsttopic .left .lil {
+        font-size: 50%;
+    }
+
+    .firsttopic .left .inp {
+        font-size: 70%
+    }
+
+    .firsttopic .righttopic {
+        padding: 50px 0;
+        margin-bottom: 20%;
+        transform: scale(0.8);
+    }
+
+    .firsttopic .left .but {
+        font-size: 63%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .firsttopic {
+        gap: 3%;
+        width: auto;
+        padding: 5% 17%;
+    }
+
+    .firsttopic .left, .firsttopic .righttopic {
+        margin: -50px auto;
+
+    }
+
+    .firsttopic .left h2 {
+        font-size: 90%;
+    }
+
+    .firsttopic .left p {
+        padding: 3% 0%;
+        font-size: 60%;
+    }
+
+    .firsttopic .left .brown {
+        font-size: 50%;
+    }
+
+    .firsttopic .left h3 {
+        font-size: 70%;
+    }
+
+    .but {
+        font-size: 45%;
+        padding-top: 3.2%;
+    }
+
+    .firsttopic .left .lil {
+        font-size: 50%;
+    }
+
+    .firsttopic .left .inp {
+        font-size: 50%
+    }
+
+    .firsttopic .righttopic {
+        margin-bottom: 2%;
+        transform: scale(0.5);
+    }
+
+    .firsttopic .left .but {
+        width: 30%;
+        font-size: 50%;
+    }
+}

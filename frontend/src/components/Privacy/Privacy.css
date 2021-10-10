@@ -1,0 +1,32 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,80);
+
+
+.pepe {
+    color: #Black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0 0 24px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.parag {
+    margin: 7%;
+    text-align: center;
+    font-size: 150%;
+}
+
+@media screen and (max-width: 892px) {
+    .pepe {
+        font-size: 10px;
+        line-height: 15px;
+        margin: 0;
+        text-align: justify;
+        text-justify: inter-word;
+    }
+
+    .parag {
+        font-size: 80%;
+    }
+}
