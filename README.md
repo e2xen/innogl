@@ -39,8 +39,17 @@ You can read information about the design in the file [./Documentation.md](./Doc
 ## Requirements
 You can read information about the requirements in the file [./Requirements.pdf](./Requirements.pdf).
 
-## Code style
-The code will be written using best practices of Spring and will be documented.
+## Code 
+We tried to write the code follow the recommendations from Spring community for backend(applied some design patterns), and from React community for frontend(we used reusable components, hooks, etc.).
+
+We used style checkers to check the code:
+* For frontend: *ESLint*
+* For backend: *SonarLint*
+
+## Tests
+We developed unit and integration tests for backend and frontend parts, you can run them following the guidelines:
+* `frontend/README.md`
+* `backend/README.md`
 
 ## Contribution
 You can contribute in your project - we are glad to new ideas. Just open pull requests. However, be sure to follow our style guids for the code.

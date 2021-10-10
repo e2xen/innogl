@@ -21,6 +21,10 @@ You should have pre-installed [Java 16](https://www.codejava.net/java-se/downloa
 *Important:* for this step you need docker running in background.
 #### Now you're up and running! Backend is accessible at a default 8080 port on your machine.
 
-## API
-For reference, if you are interested in an API provided by the backend, you may proceed to http://localhost:8080/swagger-ui/index.html?url=/v3/api-docs after running the application.
+## API Documentation
+We used *Auto Swagger(OpenAPI 3.0)* to automatically generate the documentation for endpoints.
+
+For reference, if you are interested in an API provided by the backend, you may proceed to
+[http://localhost:8080/swagger-ui/index.html?url=/v3/api-docs](http://localhost:8080/swagger-ui/index.html?url=/v3/api-docs)
+after running the application in your browser.
 ![AutoSwagger Image](./swagger.png)
