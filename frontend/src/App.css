@@ -1,0 +1,157 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,80);
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+}
+
+
+.container {
+    position: relative;
+    width: auto;
+    height: auto;
+    padding: 1% 0px;
+    background-color: #FFF;
+}
+
+.container .circle {
+    position: absolute;
+    width: 10%;
+    height: 25%;
+    left: -2%;
+    top: -2%;
+    background: #8EC2F2;
+    opacity: 0.25;
+    border-radius: 40%
+}
+
+.f1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2% 13%;
+    grid-column-gap: 20%;
+
+}
+
+.f1 .title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 250%;
+    line-height: 100%;
+    color: #252B42;
+    text-decoration: inherit;
+}
+
+.f1 .start {
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #23A6F0;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 130%;
+    line-height: 100%;
+    color: #FFFFFF;
+    width: 200px;
+    background: #23A6F0;
+    border-radius: 13.55px;
+}
+
+.f1 .start:hover,
+.f1 .start:active {
+    background: #FFF;
+    color: #23A6F0;
+    transition: all 0.5s;
+}
+
+.f1 .flhyper {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    grid-column-gap: 10%;
+}
+
+.flhyper .hyper {
+    text-decoration: inherit;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 120%;
+    line-height: 100%;
+    text-align: center;
+    letter-spacing: 0.142px;
+    color: #737373;
+}
+
+.flhyper .hyper:hover,
+.flhyper .hyper:active {
+    text-decoration: underline;
+    color: Black;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .f1 .title {
+        margin-top: 10%;
+        font-size: 150%;
+    }
+
+    .f1 .start {
+        width: 150px;
+        margin-top: 0px;
+        font-size: 90%;
+        padding: 10px;
+    }
+
+    .f1 .flhyper {
+        padding: 0px;
+    }
+
+    .flhyper .hyper {
+        font-size: 70%;
+    }
+
+    .f1 .start:hover,
+    .f1 .start:active {
+        background: #FFF;
+        color: #23A6F0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .f1 {
+        grid-column-gap: 12%;
+
+    }
+
+    .f1 .title {
+        margin-top: 10%;
+        font-size: 80%;
+    }
+
+    .f1 .start {
+        width: 90px;
+        margin-top: 0px;
+        font-size: 50%;
+        padding: 4px;
+    }
+
+    .f1 .flhyper {
+        padding: 0px;
+    }
+
+    .flhyper .hyper {
+        font-size: 50%;
+    }
+
+    .f1 .start:hover,
+    .f1 .start:active {
+        background: #FFF;
+        color: #23A6F0;
+    }
+}

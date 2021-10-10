@@ -1,0 +1,229 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,80);
+
+.firsthome {
+    display: flex;
+    gap: 13%;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    padding: 0 13%;
+}
+
+.firsthome .left, .firsthome .right {
+    position: static;
+    width: 50%;
+}
+
+.firsthome .left h2 {
+    color: #252B42;
+    font-size: 350%;
+    margin-bottom: 10%;
+}
+
+.firsthome .left p {
+    color: #737373;
+    font-size: 150%;
+    margin-bottom: 10%;
+}
+
+.firsthome .left button {
+    border: 1px solid #23A6F0;
+    border-radius: 26.27px;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin: auto 3%;
+    font-size: 100%;
+}
+
+.learn {
+    padding: 3%;
+    background: #FFF;
+    color: #23A6F0;
+}
+
+.firsthome .left .learn:hover,
+.firsthome .left .learn:active {
+    background: #23A6F0;
+    color: #FFF;
+}
+
+.doit {
+    padding: 3%;
+    background: #23A6F0;
+    color: #FFF;
+}
+
+.firsthome .left .doit:hover,
+.firsthome .left .doit:active {
+    background: #FFF;
+    color: #23A6F0;
+}
+
+.firsthome .right .photo {
+    display: block;
+    transform: scale(0.8);
+    margin-bottom: 5%;
+}
+
+.worry {
+    padding: 0px 20%;
+    font-family: 'Montserrat';
+    font-weight: bolder;
+    font-size: 300%;
+    line-height: 150%;
+    text-align: center;
+    color: #252B42;
+}
+
+.ifyou {
+    margin-top: 5%;
+    margin-bottom: -5%;
+    padding: 0px 20%;
+    font-family: 'Montserrat';
+    text-align: center;
+    font-weight: 500;
+    font-size: 150%;
+    line-height: 150%;
+    color: #737373;
+
+}
+
+.second {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15%;
+    font-weight: bold;
+    font-size: 150%;
+    line-height: 100%;
+    text-align: center;
+}
+
+.second .discuss {
+    width: 25%;
+    height: auto;
+    background: #FFF;
+    border: 2.71px solid #E9E9E9;
+    box-sizing: border-box;
+    border-radius: 3.55px;
+    color: #252B42;
+    padding-bottom: 1%;
+}
+
+.second .study {
+    width: 25%;
+    background: #23A6F0;
+    border: 2.71px solid #E9E9E9;
+    color: #FFF;
+    padding-bottom: 1%;
+}
+
+.vector {
+    width: 30%;
+    height: 30%;
+    padding: 10% 5%;
+}
+
+footer {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 0.142px;
+    color: #252B42;
+    text-align: center;
+    padding: 5%;
+    margin-top: -10%
+}
+
+footer .say {
+    font-size: 250%;
+    line-height: 130%;
+    margin-bottom: 3%;
+}
+
+footer .once {
+    font-weight: 500;
+    font-size: 200%;
+    line-height: 100%;
+    color: #737373;
+
+}
+
+@media screen and (max-width: 1024px) {
+    .firsthome .left button {
+        font-size: 60%;
+    }
+
+    .firsthome .left h2 {
+        font-size: 200%;
+    }
+
+    .firsthome .left p {
+        font-size: 100%;
+    }
+
+    .worry {
+        font-size: 80%;
+    }
+
+    .ifyou {
+        font-size: 60%;
+    }
+
+    .second {
+        font-size: 60%;
+    }
+
+    footer .say {
+        font-size: 80%;
+    }
+
+    footer .once {
+        font-size: 60%;
+    }
+
+    .firsthome .right .photo {
+        transform: scale(0.7);
+    }
+}
+
+@media screen and (max-width: 786px) {
+    .firsthome .left button {
+        font-size: 40%;
+    }
+
+    .firsthome .left h2 {
+        font-size: 80%;
+    }
+
+    .firsthome .left p {
+        font-size: 50%;
+    }
+
+    .worry {
+        font-size: 50%;
+    }
+
+    .ifyou {
+        font-size: 40%;
+    }
+
+    .second {
+        font-size: 40%;
+    }
+
+    footer .say {
+        font-size: 60%;
+    }
+
+    footer .once {
+        font-size: 40%;
+
+    }
+
+    .firsthome .right .photo {
+        transform: scale(0.6);
+    }
+}
