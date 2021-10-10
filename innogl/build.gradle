@@ -44,6 +44,9 @@ dependencies {
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.1.0'
 
+	// auto-swagger
+	implementation 'io.swagger.core.v3:swagger-annotations:2.1.11'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.11'
 
 	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
