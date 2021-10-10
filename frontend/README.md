@@ -1,5 +1,5 @@
-# Front-end Innogl
-This folder contains front-end part of Innogl project. 
+# Frontend Innogl
+This folder contains frontend part of Innogl project. 
 
 
 ## How to run
