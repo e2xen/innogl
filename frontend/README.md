@@ -4,23 +4,31 @@ This folder contains frontend part of Innogl project.
 
 ## How to run
 ### Pre-installation
-You should have pre-installed [NodeJS](https://nodejs.org/en/download/)
+You should have pre-installed [Docker](https://docs.docker.com/engine/install/).
 
 ### Running a project
+**Important**: do not forget to run backend before running frontend.
+
 Run the following commands in your terminal:
-1. Move to the current folder
-2. Install all required dependencies
+1. Pull this repo from github and navigate to **innogl/frontend**:
 ```shell
-npm i
+ cd innogl/frontend
 ```
-3. Run the application
+2. Export variable to gateway of your backend
+(if your backend is running at your machine, then use the following command):
 ```shell
-npm start
+export BACKEND_GATEWAY=http://localhost:8080/
+```
+3. Build image
+```shell
+docker build -t innogl_frontend --build-arg REACT_APP_BASE_URL=$BACKEND_GATEWAY .
+```
+4. Run the image
+```shell
+docker run -p 3000:3000 -d --name innogl_frontend
 ```
 
-**Important**: do not forget to run back-end before using the app.
-
-Now the application is available in your browser: [http://localhost:3000](http://localhost:3000)
+Now the application is available in your browser: [http://localhost:3000](http://localhost:3000)!
 
 ## Available Scripts
 In the project directory, you can run:

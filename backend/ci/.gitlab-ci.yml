@@ -1,0 +1,87 @@
+.goto-backend-project-dir: &goto-backend-project-dir
+  - cd backend/
+
+variables:
+  APP_NAME: innogl_backend
+  IMAGE_GRADLE: gradle:jdk11-alpine
+  IMAGE_DOCKER: docker:stable
+  IMAGE_UBUNTU: ubuntu:latest
+  DOCKER_REPOSITORY_APP: mcflydesigner/$APP_NAME
+
+gradle-build-backend:
+  image: $IMAGE_GRADLE
+  stage: build
+  artifacts:
+    paths:
+      - backend/build/*
+    expire_in: 1d
+  before_script:
+    - *goto-backend-project-dir
+    - chmod +x ./gradlew
+  script:
+    - ./gradlew build -x test --stacktrace
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: on_success
+
+gradle-unit-testing-backend:
+  image: $IMAGE_GRADLE
+  stage: test
+  artifacts:
+    reports:
+      junit: backend/build/test-results/test/TEST-*.xml
+    expire_in: 1d
+  services:
+    - name: docker:dind
+      command: [ "--tls=false" ]
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
+  before_script:
+    - *goto-backend-project-dir
+  script:
+    - ./gradlew test
+  rules:
+    - if: '$CI_MERGE_REQUEST_ID && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: always
+    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: always
+
+send-to-docker-backend:
+  stage: docker
+  image: $IMAGE_DOCKER
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  services:
+    - docker:19.03.12-dind
+  before_script:
+    - *goto-backend-project-dir
+  script:
+    - docker login -p $PROD_DOCKER_PASSWORD -u $PROD_DOCKER_LOGIN $PROD_DOCKER_HOST
+    - docker build -t $DOCKER_REPOSITORY_APP .
+    - docker tag $DOCKER_REPOSITORY_APP $DOCKER_REPOSITORY_APP:${CI_COMMIT_SHA:0:7}
+    - docker push $DOCKER_REPOSITORY_APP:${CI_COMMIT_SHA:0:7}
+    - docker rmi $DOCKER_REPOSITORY_APP:${CI_COMMIT_SHA:0:7}
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: on_success
+
+deploy-backend-to-aws:
+  image: $IMAGE_UBUNTU
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - eval $(ssh-agent -s)
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh-add <(echo "$PRIVATE_KEY")
+    - ssh -o StrictHostKeyChecking=no "$SSH_USER_AND_HOST" 'sudo docker stop innogl-api || true; sudo docker rm innogl-api || true'
+    - ssh -o StrictHostKeyChecking=no "$SSH_USER_AND_HOST" 'sudo docker stop innogl-redis || true; sudo docker rm innogl-redis || true'
+    - ssh -o StrictHostKeyChecking=no "$SSH_USER_AND_HOST" 'rm -rf app-backend/ && mkdir app-backend/ && cd app-backend/ && git clone https://gitlab.com/mcflydesigner/innogl.git'
+    - ssh -o StrictHostKeyChecking=no "$SSH_USER_AND_HOST" 'cd app-backend/innogl/backend/ && docker-compose -p 8080:8080 up -d'
+    - rm -rf ~/.ssh
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: on_success

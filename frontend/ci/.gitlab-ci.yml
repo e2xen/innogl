@@ -1,0 +1,74 @@
+variables:
+  APP_NAME: innogl_frontend
+  IMAGE_NODE: node:16-alpine
+  IMAGE_DOCKER: docker:stable
+  IMAGE_UBUNTU: ubuntu:latest
+  DOCKER_REPOSITORY_APP: mcflydesigner/$APP_NAME
+
+.goto-frontend-project-dir: &goto-frontend-project-dir
+  - cd frontend/
+
+build-frontend:
+  image: $IMAGE_NODE
+  stage: build
+  before_script:
+    - *goto-frontend-project-dir
+  script:
+    - npm ci
+    - CI=false
+    - npm run build
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: on_success
+
+test-frontend:
+  image: $IMAGE_NODE
+  stage: test
+  before_script:
+    - *goto-frontend-project-dir
+  script:
+    - npm ci
+    - npm test a
+  rules:
+    - if: '$CI_MERGE_REQUEST_ID && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: always
+    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: always
+
+send-to-docker-frontend:
+  stage: docker
+  image: $IMAGE_DOCKER
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  services:
+    - docker:19.03.12-dind
+  before_script:
+    - *goto-frontend-project-dir
+  script:
+    - docker login -p $PROD_DOCKER_PASSWORD -u $PROD_DOCKER_LOGIN $PROD_DOCKER_HOST
+    - docker build -t $DOCKER_REPOSITORY_APP --build-arg REACT_APP_BASE_URL=$BACKEND_GATEWAY .
+    - docker tag $DOCKER_REPOSITORY_APP $DOCKER_REPOSITORY_APP:${CI_COMMIT_SHA:0:7}
+    - docker push $DOCKER_REPOSITORY_APP:${CI_COMMIT_SHA:0:7}
+    - docker rmi $DOCKER_REPOSITORY_APP:${CI_COMMIT_SHA:0:7}
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: on_success
+
+deploy-frontend-to-aws:
+  image: $IMAGE_UBUNTU
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - eval $(ssh-agent -s)
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh-add <(echo "$PRIVATE_KEY")
+    - COMMAND_TO_SERVER="sudo docker stop $APP_NAME || true; sudo docker rm $APP_NAME || true"
+    - ssh -o StrictHostKeyChecking=no "$SSH_USER_AND_HOST" $COMMAND_TO_SERVER
+    - COMMAND_TO_SERVER="docker run -p 3000:3000 -d --name $APP_NAME $DOCKER_REPOSITORY_APP:${CI_COMMIT_SHA:0:7}"
+    - ssh -o StrictHostKeyChecking=no "$SSH_USER_AND_HOST" $COMMAND_TO_SERVER
+    - rm -rf ~/.ssh
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+      when: on_success

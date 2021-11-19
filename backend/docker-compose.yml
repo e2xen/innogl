@@ -1,8 +1,10 @@
-version: "3.9"
+version: "3.3"
 services:
   web:
+    container_name: "innogl-api"
     build: .
     ports:
       - "8080:8080"
   redis:
+    container_name: "innogl-redis"
     image: "redis"
